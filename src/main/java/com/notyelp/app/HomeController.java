@@ -7,10 +7,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import com.domain.Customer;
+import com.service.CustomerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,16 +36,39 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpSession session, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		session.isNew();
+
+		String entryPage;
+
+		if(session.getAttribute("customer") == null)
+		{
+			entryPage = "login";
+		}
+		else
+		{
+			entryPage = "home";
+		}
 		
 		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG);
 		
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "home";
+		return entryPage;
 	}
+
+    @RequestMapping(value = "doLogin", method = RequestMethod.POST)
+    public String checkLogin(@ModelAttribute("customer")Customer customer, Model model) {
+        logger.info("Login Information : " + customer.getEmail() + ", " + customer.getPassword());
+        String address;
+        CustomerService cs = new CustomerService();
+        if (cs.checkCustomer(customer.getEmail(), customer.getPassword())) {
+            address = "mainpage";
+        } else {
+            JOptionPane.showMessageDialog(null, "Incorrect Username or Password!", "Error", JOptionPane.ERROR_MESSAGE);
+            address = "home";
+        }
+        return address;
+    }
 }

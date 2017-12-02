@@ -1,0 +1,47 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: brady
+  Date: 12/2/2017
+  Time: 4:27 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Login</title>
+    <jsp:include page="partials/header.jsp"></jsp:include>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="page-header">
+            <h1>Not-Yelp</h1>
+            <p>Keep track of your local sources of food!</p>
+        </div>
+    </div>
+    <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-default">
+            <div class=panel-body">
+                <div class="panel-body">
+                    <form method="POST" action="doLogin" modelAttribute="customer">
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" class="form-control" value="email" placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" value="password" placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <small>Don't have an account? Register <a href="register">here!</a></small>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
