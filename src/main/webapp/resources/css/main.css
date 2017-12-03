@@ -1,0 +1,29 @@
+@charset "ISO-8859-1";
+
+
+.navbar{
+	background-color: #09bc92;
+}
+.panel-default > .panel-heading {
+	background-color: #09bc92;
+}
+
+.page-title {
+	
+	text-align: center;
+	margin-bottom: 1%;
+}
+
+.contact-info {
+	float: right;
+}
+
+.list-group-item-borderless {
+
+	border-left:none;
+	border-right:none;
+}
+
+.list-container {
+	width: 100%;
+}
