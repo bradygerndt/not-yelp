@@ -29,3 +29,4 @@ hs_err_pid*
 
 #db config files
 database-config.xml
+database-config-example.xml
