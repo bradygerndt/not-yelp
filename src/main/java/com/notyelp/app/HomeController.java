@@ -91,17 +91,25 @@ public class HomeController {
         }
 
 		CustomerService cs = new CustomerService();
-		Boolean result = cs.registerNewUser(customer);
-		if (result) {
-			address = "login";
-			model.addAttribute("notification", "You've successfully registered. Please log in with your username and password");
-		} else {
 
-			address = "register";
-			model.addAttribute("notification", "There was an issue registering your account.");
-		}
-		model.addAttribute("customer", new Customer());
+        if(cs.checkCustomer(customer.getEmail())) {
+            address = "register";
+            model.addAttribute("notification", "This email is already registered in our system.");
+        }
+        else {
 
-		return address;
+            Boolean result = cs.registerNewUser(customer);
+            if (result) {
+                address = "login";
+                model.addAttribute("notification", "You've successfully registered. Please log in with your username and password");
+            } else {
+
+                address = "register";
+                model.addAttribute("notification", "There was an issue registering your account.");
+            }
+            model.addAttribute("customer", new Customer());
+        }
+
+        return address;
 	}
 }
