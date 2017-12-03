@@ -6,24 +6,22 @@ import java.util.List;
 
 import com.dao.RestaurantDAO;
 import com.domain.Restaurant;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class RestaurantService {
-
-	@Autowired
-	RestaurantDAO restDao;
 
 	public RestaurantService() {
 	
 	}
 	public List<Restaurant> getRestList(){
-		List<Restaurant> restList = new ArrayList<Restaurant>();;
+		List<Restaurant> restList = new ArrayList<Restaurant>();
+		RestaurantDAO restDao = new RestaurantDAO();
 		restList = restDao.getRestaurants();
 		return restList;
 	}
 	
 	public Restaurant getRestById(BigDecimal restid) {
 		Restaurant rest = new Restaurant();
+		RestaurantDAO restDao = new RestaurantDAO();
 		rest = restDao.getRestaurantById(restid);
 		
 		return rest;

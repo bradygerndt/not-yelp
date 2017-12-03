@@ -22,6 +22,7 @@ import com.domain.Restaurant;
 import com.service.RestaurantService;
 
 import javax.servlet.http.HttpSession;
+import javax.swing.*;
 
 /**
  * Handles requests for the application home page.
@@ -35,9 +36,10 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(HttpSession session, Model model) {
+	public String home(@ModelAttribute("customer") Customer customer, HttpSession session, Model model) {
 
 		String entryPage;
+
 
 		if(session.getAttribute("customer") == null)
 		{
@@ -59,15 +61,19 @@ public class HomeController {
 	}
 
     @RequestMapping(value = "doLogin", method = RequestMethod.POST)
-    public String checkLogin(@ModelAttribute("customer")Customer customer, Model model) {
+    public String doLogin(@ModelAttribute("customer")Customer customer, Model model) {
         logger.info("Login Information : " + customer.getEmail() + ", " + customer.getPassword());
         String address;
+
+        address = "login";
         CustomerService cs = new CustomerService();
-        if (cs.checkCustomer(customer.getEmail(), customer.getPassword())) {
-            address = "mainpage";
-        } else {
-            JOptionPane.showMessageDialog(null, "Incorrect Username or Password!", "Error", JOptionPane.ERROR_MESSAGE);
+        cs.checkCustomer(customer.getEmail());
+        if (cs.checkCustomer(customer.getEmail())) {
             address = "home";
+        } else {
+
+            address = "login";
+            model.addAttribute("error", "Incorrect email or password.");
         }
         return address;
     }

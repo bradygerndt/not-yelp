@@ -5,11 +5,14 @@
   Time: 4:27 PM
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page session="false" %>
 <html>
 <head>
     <title>Login</title>
     <jsp:include page="partials/header.jsp"></jsp:include>
+    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 </head>
 <body>
 
@@ -21,21 +24,22 @@
         </div>
     </div>
     <div class="col-md-6 col-md-offset-3">
+        <div>${error}</div>
         <div class="panel panel-default">
             <div class=panel-body">
                 <div class="panel-body">
-                    <form method="POST" action="doLogin" modelAttribute="customer">
+                    <form:form method="POST" action="doLogin" modelAttribute="customer">
                         <div class="form-group">
                             <label for="email">Email address</label>
-                            <input type="email" class="form-control" value="email" placeholder="Enter email">
+                            <form:input path="email" class="form-control" placeholder="Enter email"/>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" value="password" placeholder="Password">
+                            <label>Password</label>
+                            <form:input path="password" class="form-control" placeholder="Password"/>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                         <small>Don't have an account? Register <a href="register">here!</a></small>
-                    </form>
+                    </form:form>
                 </div>
             </div>
         </div>
