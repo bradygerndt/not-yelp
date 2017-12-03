@@ -17,4 +17,7 @@
     <select id="checkCustomer" resultMap="CustomerResult">
         Select * from Restaurant_Customer where email = #{email}
     </select>
+    <insert id="register" parameterType="customer">
+        INSERT INTO Restaurant_Customer (fname, lname, email, streetno, streetname, city, state, zip, phone, password) VALUES (#{fname},#{lname},#{email},#{streetno},#{streetname},#{city},#{state},#{zip},#{phone},#{password})
+    </insert>
 </mapper>

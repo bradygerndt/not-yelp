@@ -21,4 +21,25 @@ public class CustomerDAO {
         }
         return cust;
     }
+
+    public Boolean register(Customer customer) {
+        SqlSession session = new ConnectionFactory().getSqlSessionFactory().openSession();
+
+        int success;
+
+        try{
+           success = session.insert("com.mapper.CustomerMapper.register", customer);
+           session.commit();
+        }
+        finally {
+            session.close();
+        }
+
+        if(success >=1) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }

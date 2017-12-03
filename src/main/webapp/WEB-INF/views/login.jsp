@@ -24,18 +24,18 @@
         </div>
     </div>
     <div class="col-md-6 col-md-offset-3">
-        <div>${error}</div>
+        <div>${notification}</div>
         <div class="panel panel-default">
             <div class=panel-body">
                 <div class="panel-body">
                     <form:form method="POST" action="doLogin" modelAttribute="customer">
                         <div class="form-group">
                             <label for="email">Email address</label>
-                            <form:input path="email" class="form-control" placeholder="Enter email"/>
+                            <form:input path="email" type="email" class="form-control" placeholder="Enter email"/>
                         </div>
                         <div class="form-group">
                             <label>Password</label>
-                            <form:input path="password" class="form-control" placeholder="Password"/>
+                            <form:input path="password" type="password" class="form-control" placeholder="Password"/>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                         <small>Don't have an account? Register <a href="register">here!</a></small>

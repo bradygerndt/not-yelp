@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,10 +37,11 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(@ModelAttribute("customer") Customer customer, HttpSession session, Model model) {
+	public String home(HttpSession session, Model model) {
+
+        model.addAttribute("customer", new Customer());
 
 		String entryPage;
-
 
 		if(session.getAttribute("customer") == null)
 		{
@@ -49,32 +51,57 @@ public class HomeController {
 		{
 			entryPage = "home";
 		}
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
+
 		return entryPage;
 	}
 
     @RequestMapping(value = "doLogin", method = RequestMethod.POST)
-    public String doLogin(@ModelAttribute("customer")Customer customer, Model model) {
-        logger.info("Login Information : " + customer.getEmail() + ", " + customer.getPassword());
-        String address;
+	public String doLogin(@ModelAttribute("customer")Customer customer, Model model) {
+		logger.info("Login Information : " + customer.getEmail() + ", " + customer.getPassword());
+		String address;
 
-        address = "login";
-        CustomerService cs = new CustomerService();
-        cs.checkCustomer(customer.getEmail());
-        if (cs.checkCustomer(customer.getEmail())) {
-            address = "home";
-        } else {
+		CustomerService cs = new CustomerService();
+		logger.info(String.valueOf(cs.checkCustomer(customer.getEmail())));
+		if (cs.checkCustomer(customer.getEmail())) {
+			address = "home";
+		} else {
 
-            address = "login";
-            model.addAttribute("error", "Incorrect email or password.");
+			address = "login";
+			model.addAttribute("notification", "Incorrect email or password.");
+		}
+		return address;
+	}
+
+	@RequestMapping(value = "register", method = RequestMethod.GET)
+	public String register(@ModelAttribute("customer")Customer customer, Model model) {
+		logger.info("On registration page");
+
+		return "register";
+	}
+
+	@RequestMapping(value = "doRegister", method = RequestMethod.POST)
+	public String doRegister(@ModelAttribute("customer")Customer customer, BindingResult bindingResult, Model model) {
+        logger.info("in create user");
+		String address;
+
+        if (bindingResult.hasErrors()) {
+            System.out.println("Error on registration page");
+            model.addAttribute("notification", "There was an error registering your account.");
+            return "register";
         }
-        return address;
-    }
+
+		CustomerService cs = new CustomerService();
+		Boolean result = cs.registerNewUser(customer);
+		if (result) {
+			address = "login";
+			model.addAttribute("notification", "You've successfully registered. Please log in with your username and password");
+		} else {
+
+			address = "register";
+			model.addAttribute("notification", "There was an issue registering your account.");
+		}
+		model.addAttribute("customer", new Customer());
+
+		return address;
+	}
 }
