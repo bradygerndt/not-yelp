@@ -7,13 +7,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import com.domain.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import com.domain.Restaurant;
 import com.service.RestaurantService;
@@ -22,20 +21,23 @@ import javax.servlet.http.HttpSession;
 
 
 @Controller
+@SessionAttributes("customer")
 public class RestaurantController {
 
     private static final Logger logger = LoggerFactory.getLogger(RestaurantController.class);
 
 
     @RequestMapping(value= "/restaurants")
-    public String restaurants(Model model, HttpSession session) {
+    public String restaurants(Model model, @ModelAttribute("customer")Customer customer, HttpSession session) {
         logger.info("Arrived at restaurants page");
-        logger.info(session.getId());
+
+        model.addAttribute("customer", customer);
 
         List<Restaurant> restList = new ArrayList<Restaurant>();
         RestaurantService restService = new RestaurantService();
         restList = restService.getRestList();
         model.addAttribute("restaurants", restList);
+
 
         return "restaurants";
 

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.domain.Restaurant;
 import com.service.RestaurantService;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import javax.swing.*;
@@ -56,14 +57,15 @@ public class HomeController {
 	}
 
     @RequestMapping(value = "doLogin", method = RequestMethod.POST)
-	public String doLogin(@ModelAttribute("customer")Customer customer, Model model) {
+	public String doLogin(@ModelAttribute("customer")Customer customer, Model model, RedirectAttributes redirectAttributes) {
 		logger.info("Login Information : " + customer.getEmail() + ", " + customer.getPassword());
 		String address;
 
 		CustomerService cs = new CustomerService();
-		logger.info(String.valueOf(cs.checkCustomer(customer.getEmail())));
-		if (cs.checkCustomer(customer.getEmail())) {
-			address = "home";
+		Customer user = cs.getCustomer(customer.getEmail());
+		if (user != null) {
+            redirectAttributes.addFlashAttribute("customer", user);
+			address = "redirect:restaurants";
 		} else {
 
 			address = "login";
@@ -92,7 +94,7 @@ public class HomeController {
 
 		CustomerService cs = new CustomerService();
 
-        if(cs.checkCustomer(customer.getEmail())) {
+        if(cs.getCustomer(customer.getEmail()) != null) {
             address = "register";
             model.addAttribute("notification", "This email is already registered in our system.");
         }

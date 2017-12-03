@@ -10,19 +10,14 @@ public class CustomerService {
 
     }
 
-    public Boolean checkCustomer(String email) {
+    public Customer getCustomer(String email) {
 
         Customer cust;
         CustomerDAO custDAO = new CustomerDAO();
 
         cust = custDAO.checkCustomer(email);
 
-        if(cust == null){
-            return false;
-        }
-        else{
-            return true;
-        }
+        return cust;
     }
 
     public Boolean registerNewUser(Customer customer) {
