@@ -15,12 +15,6 @@ public class Order {
 	private Date deliverydate;
 	private Date receiveddate;
 	
-	
-	public Order() {
-		
-	}
-
-
 	public BigDecimal getOno() {
 		return ono;
 	}

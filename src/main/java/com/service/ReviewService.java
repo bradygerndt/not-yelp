@@ -15,4 +15,12 @@ public class ReviewService {
         revList = revDao.getRestReviews(id);
         return revList;
     }
+
+    public Boolean submitReview(Review review) {
+        ReviewDAO revDao = new ReviewDAO();
+
+        Boolean result = revDao.submitReview(review);
+
+        return result;
+    }
 }

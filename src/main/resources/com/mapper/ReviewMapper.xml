@@ -13,4 +13,8 @@
     <select id="selectReviewByRest" resultMap="ReviewResult">
         Select * from CUST_REVIEW WHERE RESTID = #{restid}
     </select>
+    <insert id="submitReview" parameterType="Review">
+        INSERT INTO CUST_REVIEW (custemail, restid, reviewtitle, reviewdesc, reviewdate, rating) VALUES (#{custemail}, #{restid}, #{reviewtitle}, #{reviewdesc}, #{reviewdate}, #{rating})
+    </insert>
+
 </mapper>

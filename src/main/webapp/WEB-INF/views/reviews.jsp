@@ -16,7 +16,7 @@
 
 <div class="content-wrapper">
     <div class="page-start">
-        <h1 class="page-title">Reviews</h1>
+        <h1 class="page-title">Reviews for ${restaurant.getRname()}</h1>
     </div>
     <div class="container">
         <div class="row">
@@ -26,12 +26,23 @@
                         <li class="list-group-item list-group-item-borderless">
                             <div class="container list-container">
                                 <div class="row">
-                                    <p>review.getReviewTitle()</p>
+                                    <div class="row">
+                                        <h3>"${review.getReviewtitle()}"</h3>
+                                        <h4>${review.getRating()}/5</h4>
+                                        <span class="pull-right">${review.getReviewdate()}</span>
+                                        <span>${review.getCustemail()}</span>
+                                    </div>
+                                    <div>
+                                        <p>${review.getReviewdesc()}</p>
+                                    </div>
                                 </div>
                             </div>
                         </li>
                     </c:forEach>
                 </ul>
+            </div>
+            <div class="col-md-2">
+                <a>Submit a review for ${restaurant.getRname()}</a>
             </div>
         </div>
     </div>

@@ -23,4 +23,24 @@ public class ReviewDAO {
         }
         return revList;
     }
+    public Boolean submitReview(Review review) {
+        SqlSession session = new ConnectionFactory().getSqlSessionFactory().openSession();
+        List<Review> revList = new ArrayList<Review>();
+        int success;
+
+
+        try{
+            success = session.insert("com.mapper.ReviewMapper.submitReview", review);
+            session.commit();
+        }
+        finally {
+            session.close();
+        }
+        if(success >=1) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
