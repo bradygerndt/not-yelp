@@ -15,7 +15,7 @@
 		<result property="zip" column="zip"/>
 		<result property="pricerange" column="pricerange"/>
 		<result property="deliveryflag" column="deliveryflag"/>
-		<result property="outdoorseating" column="outdoorseating"/>
+		<result property="outdoorseating" column="outdoorseatingflag"/>
 	</resultMap>
 	<select id="selectAllRestaurants" resultMap="RestaurantResult">
 	Select * from Restaurant

@@ -50,6 +50,8 @@ public class RestaurantController {
         RestaurantService restService = new RestaurantService();
         Restaurant currentRest = restService.getRestById(id);
 
+        logger.info(currentRest.getOutdoorseating());
+
         if(currentRest != null) {
             model.addAttribute("restaurant", currentRest);
         }

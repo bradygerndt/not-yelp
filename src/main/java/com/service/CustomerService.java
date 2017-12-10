@@ -26,4 +26,8 @@ public class CustomerService {
         Boolean result = custDAO.register(customer);
         return result;
     }
+
+//    public Boolean checkPassword(Customer customer) {
+//
+//    }
 }
