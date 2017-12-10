@@ -51,7 +51,7 @@
                     </div>
                     <div class="panel-body">
                         <p>Check out food from ${restaurant.getRname()}.</p>
-                        <button class="btn-default">Order</button>
+                        <button class="btn btn-default">Order</button>
                     </div>
                 </div>
             </div>
