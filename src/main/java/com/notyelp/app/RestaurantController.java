@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.*;
 
 import com.domain.Restaurant;
 import com.service.RestaurantService;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
@@ -60,6 +63,20 @@ public class RestaurantController {
         }
 
         return "restaurant";
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ModelAndView handleError(HttpServletRequest req, Exception ex) {
+        logger.error("Request: " + req.getRequestURL() + " raised " + ex);
+
+        ModelAndView mav = new ModelAndView();
+        //mav.addObject("exception", ex);
+        //mav.addObject("url", req.getRequestURL());
+        mav.addObject("notification", "Looks like you've been logged out.");
+        mav.addObject("customer", new Customer());
+
+        mav.setViewName("/login");
+        return mav;
     }
 
 }
