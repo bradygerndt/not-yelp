@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Locale;
 
 import com.domain.Customer;
+import com.domain.Review;
+import com.service.ReviewService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -53,8 +55,6 @@ public class RestaurantController {
         RestaurantService restService = new RestaurantService();
         Restaurant currentRest = restService.getRestById(id);
 
-        logger.info(currentRest.getOutdoorseating());
-
         if(currentRest != null) {
             model.addAttribute("restaurant", currentRest);
         }
@@ -63,6 +63,29 @@ public class RestaurantController {
         }
 
         return "restaurant";
+    }
+
+    @RequestMapping("/reviews/{id}")
+    public String reviews(@PathVariable BigDecimal id, Model model){
+        logger.info("Arrived at restaurant review page. The ID is " + id);
+
+        RestaurantService restService = new RestaurantService();
+        Restaurant currentRest = restService.getRestById(id);
+        ReviewService revService = new ReviewService();
+
+        List<Review> revList = new ArrayList<Review>();
+        revList = revService.getReviewsByRestID(id);
+
+
+        if(currentRest != null) {
+            model.addAttribute("restaurant", currentRest);
+            model.addAttribute("reviews", revList);
+        }
+        else {
+            model.addAttribute("restaurant.restname","Restaurant not found");
+        }
+
+        return "reviews";
     }
 
     @ExceptionHandler(Exception.class)

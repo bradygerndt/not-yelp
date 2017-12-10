@@ -1,6 +1,7 @@
 package com.domain;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Review {
@@ -9,17 +10,17 @@ public class Review {
 	private String custemail;
 	private BigDecimal restid;
 	private String reviewtitle;
-	private String reviewdescr;
-	private Date reviewdate;
+	private String reviewdesc;
+	private Timestamp reviewdate;
 	private BigDecimal rating;
 	
 	
-	public Review(BigDecimal reviewid, String custemail, BigDecimal restid, String reviewtitle, String reviewdescr, Date reviewdate, BigDecimal rating) {
+	public Review(BigDecimal reviewid, String custemail, BigDecimal restid, String reviewtitle, String reviewdescr, Timestamp reviewdate, BigDecimal rating) {
 		this.reviewid = reviewid;
 		this.custemail = custemail;
 		this.restid = restid;
 		this.reviewtitle = reviewtitle;
-		this.reviewdescr = reviewdescr;
+		this.reviewdesc = reviewdescr;
 		this.reviewdate = reviewdate;
 		this.rating = rating;
 	}
@@ -66,12 +67,12 @@ public class Review {
 
 
 	public String getReviewdescr() {
-		return reviewdescr;
+		return reviewdesc;
 	}
 
 
 	public void setReviewdescr(String reviewdescr) {
-		this.reviewdescr = reviewdescr;
+		this.reviewdesc = reviewdescr;
 	}
 
 
@@ -80,7 +81,7 @@ public class Review {
 	}
 
 
-	public void setReviewdate(Date reviewdate) {
+	public void setReviewdate(Timestamp reviewdate) {
 		this.reviewdate = reviewdate;
 	}
 

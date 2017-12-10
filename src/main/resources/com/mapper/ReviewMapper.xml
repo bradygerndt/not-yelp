@@ -9,9 +9,8 @@
         <result property="reviewdesc" column="reviewdesc"/>
         <result property="reviewdate" column="reviewdate"/>
         <result property="rating" column="rating"/>
-        <result property="streetname" column="streetname"/>
     </resultMap>
     <select id="selectReviewByRest" resultMap="ReviewResult">
-        Select * from Reviews WHERE RESTID = #{restid}
+        Select * from CUST_REVIEW WHERE RESTID = #{restid}
     </select>
 </mapper>
