@@ -12,6 +12,7 @@
 	<!-- Navbar -->
 	<jsp:include page="./partials/navbar.jsp"></jsp:include>
 	<div class="container">
+        <div class="row">
 		<div class="col-md-8">
 			<div class="panel panel-default">
 				<div class="panel-heading">
@@ -37,5 +38,24 @@
                 <p>${restaurant.getOutdoorseating()}</p>
 			</div>
 		</div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h5 class="text-center">Reviews</h5>
+                    </div>
+                    <div class="panel-body">  <a>Check out reviews of ${restaurant.getRname()} here!</a></div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h5 class="text-center">Menu</h5>
+                    </div>
+                    <div class="panel-body">
+                        <p>Check out food from ${restaurant.getRname()}.</p>
+                        <button class="btn-default">Order</button>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </div>
 </body>
 </html>

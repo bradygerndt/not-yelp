@@ -38,7 +38,7 @@
                             <form:input path="password" type="password" class="form-control" placeholder="Password"/>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
-                        <div><small>Don't have an account? Register <a href="register">here!</a></small></div>
+                        <div><small>Don't have an account? <a href="register">Register here!</a></small></div>
                     </form:form>
                 </div>
             </div>
