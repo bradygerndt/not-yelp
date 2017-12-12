@@ -11,7 +11,7 @@
         <result property="rating" column="rating"/>
     </resultMap>
     <select id="selectReviewByRest" resultMap="ReviewResult">
-        Select * from CUST_REVIEW WHERE RESTID = #{restid}
+        Select * from CUST_REVIEW WHERE RESTID = #{restid} order by reviewdate desc
     </select>
     <insert id="submitReview" parameterType="Review">
         INSERT INTO CUST_REVIEW (reviewid, custemail, restid, reviewtitle, reviewdescr, reviewdate, rating) VALUES (customer_reviewid_seq.nextval, #{custemail}, #{restid}, #{reviewtitle}, #{reviewdesc}, sysdate, #{rating})

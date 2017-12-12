@@ -39,8 +39,9 @@ public class HomeController {
 	public String home(HttpSession session, Model model) {
 
         model.addAttribute("customer", new Customer());
-
+        ;
 		String entryPage;
+
 
 		if(session.getAttribute("customer") == null)
 		{
@@ -48,6 +49,7 @@ public class HomeController {
 		}
 		else
 		{
+		    ;
 			entryPage = "home";
 		}
 
@@ -55,13 +57,14 @@ public class HomeController {
 	}
 
     @RequestMapping(value = "doLogin", method = RequestMethod.POST)
-	public String doLogin(@ModelAttribute("customer")Customer customer, Model model, RedirectAttributes redirectAttributes) {
+	public String doLogin(@ModelAttribute("customer")Customer customer, Model model, RedirectAttributes redirectAttributes, HttpSession session) {
 		logger.info("Login Information : " + customer.getEmail() + ", " + customer.getPassword());
 		String address;
 
 		CustomerService cs = new CustomerService();
 		Customer user = cs.getCustomer(customer.getEmail());
 		if (user != null) {
+			session.setAttribute("customer", user);
             redirectAttributes.addFlashAttribute("customer", user);
 			address = "redirect:restaurants";
 		} else {

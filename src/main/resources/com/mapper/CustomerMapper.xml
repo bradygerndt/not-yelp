@@ -5,7 +5,7 @@
         <id property="email" column="email" />
         <result property="fname" column="fname" />
         <result property="phone" column="minit" />
-        <result property="email" column="lname" />
+        <result property="lname" column="lname" />
         <result property="phone" column="phone"/>
         <result property="password" column="password"/>
         <result property="streetno" column="streetno"/>

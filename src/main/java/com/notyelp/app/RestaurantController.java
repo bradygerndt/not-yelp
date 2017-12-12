@@ -39,6 +39,7 @@ public class RestaurantController {
 
         model.addAttribute("customer", customer);
 
+
         List<Restaurant> restList = new ArrayList<Restaurant>();
         RestaurantService restService = new RestaurantService();
         restList = restService.getRestList();
@@ -64,87 +65,19 @@ public class RestaurantController {
 
         return "restaurant";
     }
-
-    @RequestMapping("/reviews/{id}")
-    public String reviews(@PathVariable BigDecimal id, Model model) {
-        logger.info("Arrived at restaurant review page. The ID is " + id);
-
-        RestaurantService restService = new RestaurantService();
-        Restaurant currentRest = restService.getRestById(id);
-        ReviewService revService = new ReviewService();
-
-        List<Review> revList = new ArrayList<Review>();
-        revList = revService.getReviewsByRestID(id);
-
-
-        if(currentRest != null) {
-            model.addAttribute("restaurant", currentRest);
-            model.addAttribute("reviews", revList);
-        }
-        else {
-            model.addAttribute("restaurant.restname","Restaurant not found");
-        }
-
-        return "reviews";
-    }
-
-    // review controllers
-
-    @RequestMapping(value = "/review/{id}", method = RequestMethod.GET)
-    public String review(@PathVariable BigDecimal id, Model model, HttpServletRequest request){
-        logger.info("Arrived at restaurant review page. The ID is " + id);
-
-        Review review = new Review();
-
-        RestaurantService restService = new RestaurantService();
-        Restaurant currentRest = restService.getRestById(id);
-        model.addAttribute("restaurant", currentRest);
-        model.addAttribute("review", review);
-
-        review.setRestid(id);
-
-        return "review";
-    }
-
-    @RequestMapping(value = "/doReview", method = RequestMethod.POST)
-    public String doReview(@ModelAttribute("review") Review review, @ModelAttribute("customer") Customer customer, Model model, HttpServletRequest request)
-    {
-        BigDecimal restid = (BigDecimal)request.getAttribute("restid");
-        logger.info("Submitted review");
-
-        review.setCustemail(customer.getEmail());
-        logger.info(customer.getEmail() + review.getRestid() + review.getReviewtitle() + review.getReviewdesc() + review.getRating());
-
-
-        String address;
-
-        ReviewService revService = new ReviewService();
-        Boolean success = revService.submitReview(review);
-
-        if (success) {
-            address = "/reviews/" + review.getRestid();
-            model.addAttribute("notification", "Your review was submitted");
-        } else {
-
-            address = "review/" + review.getRestid();
-            model.addAttribute("notification", "There was an issue submitting your review.");
-        }
-
-        return address;
-    }
-
-    @ExceptionHandler(Exception.class)
-    public ModelAndView handleError(HttpServletRequest req, Exception ex) {
-        logger.error("Request: " + req.getRequestURL() + " raised " + ex);
-
-        ModelAndView mav = new ModelAndView();
-        //mav.addObject("exception", ex);
-        //mav.addObject("url", req.getRequestURL());
-        mav.addObject("notification", "Looks like you've been logged out.");
-        mav.addObject("customer", new Customer());
-
-        mav.setViewName("/login");
-        return mav;
-    }
+//
+//    @ExceptionHandler(Exception.class)
+//    public ModelAndView handleError(HttpServletRequest req, Exception ex) {
+//        logger.error("Request: " + req.getRequestURL() + " raised " + ex);
+//
+//        ModelAndView mav = new ModelAndView();
+//        //mav.addObject("exception", ex);
+//        //mav.addObject("url", req.getRequestURL());
+//        mav.addObject("notification", "Looks like you've been logged out.");
+//        mav.addObject("customer", new Customer());
+//
+//        mav.setViewName("/login");
+//        return mav;
+//    }
 
 }
