@@ -17,7 +17,7 @@
 <div class="content-wrapper">
     <div class="page-start">
         <h1 class="page-title">Reviews for ${restaurant.getRname()}</h1>
-        <c:if test="${notification == success}">
+        <c:if test="${notification}">
             <p class="text-center"> Your review has been submitted!</p>
         </c:if>
     </div>
@@ -30,13 +30,15 @@
                             <div class="container list-container">
                                 <div class="row">
                                     <div class="row">
+                                        <span class="pull-right">${review.getReviewdate()}</span>
                                         <h3>"${review.getReviewtitle()}"</h3>
                                         <h4>${review.getRating()}/5</h4>
-                                        <span class="pull-right">${review.getReviewdate()}</span>
-                                        <span>${review.getCustemail()}</span>
+                                        <small>${review.getCustemail()}</small>
                                     </div>
                                     <div>
-                                        <p>${review.getReviewdesc()}</p>
+                                        <blockquote>
+                                            <p class="text-center">${review.getReviewdesc()}</p>
+                                        </blockquote>
                                     </div>
                                 </div>
                             </div>

@@ -65,7 +65,6 @@ public class RestaurantController {
 
         return "restaurant";
     }
-//
 //    @ExceptionHandler(Exception.class)
 //    public ModelAndView handleError(HttpServletRequest req, Exception ex) {
 //        logger.error("Request: " + req.getRequestURL() + " raised " + ex);
@@ -79,5 +78,6 @@ public class RestaurantController {
 //        mav.setViewName("/login");
 //        return mav;
 //    }
+
 
 }
