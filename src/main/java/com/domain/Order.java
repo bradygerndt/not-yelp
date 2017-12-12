@@ -5,105 +5,47 @@ import java.util.Date;
 
 public class Order {
 	
-	private BigDecimal ono;
-	private Date orderdate;
-	private String custemail;
-	private String dineinflag;
-	private String deliveryflag;
-	private String pickupflag;
-	private Date pickupdate;
-	private Date deliverydate;
-	private Date receiveddate;
-	
-	public BigDecimal getOno() {
-		return ono;
+	private BigDecimal RestId;
+	private String FoodName;
+	private BigDecimal Price;
+
+	public Order(BigDecimal RestId, String FoodName, BigDecimal Price) {
+		this.RestId = RestId;
+		this.FoodName = FoodName;
+		this.Price = Price;
 	}
 
 
-	public void setOno(BigDecimal ono) {
-		this.ono = ono;
+	public BigDecimal getRestId() {
+
+		return this.RestId;
+	}
+
+	public void setRestId(BigDecimal restId) {
+		this.RestId = restId;
+	}
+
+	public String getFoodName() {
+		return this.FoodName;
+	}
+
+	public void setFoodName(String foodName) {
+		this.FoodName = foodName;
+	}
+
+	public BigDecimal getPrice() {
+		return this.Price;
+	}
+
+	public void setPrice(BigDecimal price) {
+		this.Price = Price;
+	}
+
+	public Order() {
+		
 	}
 
 
-	public Date getOrderdate() {
-		return orderdate;
-	}
 
-
-	public void setOrderdate(Date orderdate) {
-		this.orderdate = orderdate;
-	}
-
-
-	public String getCustemail() {
-		return custemail;
-	}
-
-
-	public void setCustemail(String custemail) {
-		this.custemail = custemail;
-	}
-
-
-	public String getDineinflag() {
-		return dineinflag;
-	}
-
-
-	public void setDineinflag(String dineinflag) {
-		this.dineinflag = dineinflag;
-	}
-
-
-	public String getDeliveryflag() {
-		return deliveryflag;
-	}
-
-
-	public void setDeliveryflag(String deliveryflag) {
-		this.deliveryflag = deliveryflag;
-	}
-
-
-	public String getPickupflag() {
-		return pickupflag;
-	}
-
-
-	public void setPickupflag(String pickupflag) {
-		this.pickupflag = pickupflag;
-	}
-
-
-	public Date getPickupdate() {
-		return pickupdate;
-	}
-
-
-	public void setPickupdate(Date pickupdate) {
-		this.pickupdate = pickupdate;
-	}
-
-
-	public Date getDeliverydate() {
-		return deliverydate;
-	}
-
-
-	public void setDeliverydate(Date deliverydate) {
-		this.deliverydate = deliverydate;
-	}
-
-
-	public Date getReceiveddate() {
-		return receiveddate;
-	}
-
-
-	public void setReceiveddate(Date receiveddate) {
-		this.receiveddate = receiveddate;
-	}
-	
-	
 
 }
