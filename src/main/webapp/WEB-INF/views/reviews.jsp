@@ -17,6 +17,9 @@
 <div class="content-wrapper">
     <div class="page-start">
         <h1 class="page-title">Reviews for ${restaurant.getRname()}</h1>
+        <c:if test="${notification == success}">
+            <p class="text-center"> Your review has been submitted!</p>
+        </c:if>
     </div>
     <div class="container">
         <div class="row">

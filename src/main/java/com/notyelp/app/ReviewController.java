@@ -78,6 +78,8 @@ public class ReviewController {
     {
         logger.info("Submitted review");
 
+        //fix hidden field - pass restid in session
+
         review.setCustemail(customer.getEmail());
         logger.info(customer.getEmail() + review.getRestid() + review.getReviewtitle() + review.getReviewdesc() + review.getRating());
 
@@ -88,8 +90,9 @@ public class ReviewController {
         Boolean success = revService.submitReview(review);
 
         if (success) {
-            address = "/reviews/" + review.getRestid();
-            model.addAttribute("notification", "Your review was submitted");
+            //address = "reviews/" + review.getRestid();
+            address = "redirect:/reviews/" + review.getRestid();
+            model.addAttribute("notification", "success");
         } else {
 
             address = "review/" + review.getRestid();
