@@ -12,6 +12,7 @@ import com.domain.Review;
 import com.service.ReviewService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -43,7 +44,6 @@ public class RestaurantController {
         restList = restService.getRestList();
         model.addAttribute("restaurants", restList);
 
-
         return "restaurants";
 
     }
@@ -66,7 +66,7 @@ public class RestaurantController {
     }
 
     @RequestMapping("/reviews/{id}")
-    public String reviews(@PathVariable BigDecimal id, Model model){
+    public String reviews(@PathVariable BigDecimal id, Model model) {
         logger.info("Arrived at restaurant review page. The ID is " + id);
 
         RestaurantService restService = new RestaurantService();
@@ -91,29 +91,30 @@ public class RestaurantController {
     // review controllers
 
     @RequestMapping(value = "/review/{id}", method = RequestMethod.GET)
-    public String review(@PathVariable BigDecimal id, Model model){
+    public String review(@PathVariable BigDecimal id, Model model, HttpServletRequest request){
         logger.info("Arrived at restaurant review page. The ID is " + id);
 
-        model.addAttribute("review", new Review());
+        Review review = new Review();
 
         RestaurantService restService = new RestaurantService();
         Restaurant currentRest = restService.getRestById(id);
+        model.addAttribute("restaurant", currentRest);
+        model.addAttribute("review", review);
 
-
-        if(currentRest != null) {
-            model.addAttribute("restaurant", currentRest);
-        }
-        else {
-            model.addAttribute("restaurant.restname","Restaurant not found");
-        }
+        review.setRestid(id);
 
         return "review";
     }
 
-    @RequestMapping(value = "doReview", method = RequestMethod.POST)
-    public String doReview(@ModelAttribute("review") Review review, Model model)
+    @RequestMapping(value = "/doReview", method = RequestMethod.POST)
+    public String doReview(@ModelAttribute("review") Review review, @ModelAttribute("customer") Customer customer, Model model, HttpServletRequest request)
     {
+        BigDecimal restid = (BigDecimal)request.getAttribute("restid");
         logger.info("Submitted review");
+
+        review.setCustemail(customer.getEmail());
+        logger.info(customer.getEmail() + review.getRestid() + review.getReviewtitle() + review.getReviewdesc() + review.getRating());
+
 
         String address;
 
