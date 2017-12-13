@@ -11,6 +11,7 @@ import com.domain.Customer;
 import com.service.CustomerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,8 +19,10 @@ import org.springframework.web.bind.annotation.*;
 
 import com.domain.Restaurant;
 import com.service.RestaurantService;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.swing.*;
 
@@ -39,7 +42,6 @@ public class HomeController {
 	public String home(HttpSession session, Model model) {
 
         model.addAttribute("customer", new Customer());
-        ;
 		String entryPage;
 
 
@@ -49,7 +51,6 @@ public class HomeController {
 		}
 		else
 		{
-		    ;
 			entryPage = "home";
 		}
 
@@ -115,4 +116,21 @@ public class HomeController {
 
         return address;
 	}
+
+	@RequestMapping(value = "logout", method = RequestMethod.GET)
+	public String logout(Model model, HttpSession session, HttpServletRequest request, SessionStatus status) {
+        session = request.getSession();
+
+        logger.info(session.getId());
+
+		session.invalidate();
+		status.setComplete();
+        session = request.getSession(false);
+
+        logger.info("session done? " + session);
+
+		return "redirect:/";
+	}
+
+
 }

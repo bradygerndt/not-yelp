@@ -31,7 +31,7 @@
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">${customer.getFname()}<span class="caret"></span></a>
 						<ul class="dropdown-menu navbar-right">
-							<li><a href="#">Log Out</a></li>
+							<li><a href="/logout">Log Out</a></li>
 						</ul>
 					</li>
 				</ul>
