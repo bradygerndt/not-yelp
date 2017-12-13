@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mapper.OrderMapper">
-    <resultMap id="orderResult" type="Order">
+    <resultMap id="OrderResult" type="Order">
         <id property="RestId" column="RestId" />
         <result property="FoodName" column="FoodName" />
         <result property="Price" column="Price" />

@@ -30,7 +30,7 @@ import javax.servlet.http.HttpSession;
 @SessionAttributes("customer")
 public class ReviewController {
 
-    private static final Logger logger = LoggerFactory.getLogger(RestaurantController.class);
+    private static final Logger logger = LoggerFactory.getLogger(ReviewController.class);
 
     @RequestMapping("/reviews/{id}")
     public String reviews(@PathVariable BigDecimal id, Model model) {

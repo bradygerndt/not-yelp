@@ -18,7 +18,7 @@ public class OrderDAO {
         List<Order> orderList = new ArrayList<Order>();
 
         try{
-            orderList = session.selectList("com.mapper.RestaurantMapper.selectMenuById",RestId);
+            orderList = session.selectList("com.mapper.OrderMapper.selectMenuById",RestId);
         }
         finally {
             session.close();
