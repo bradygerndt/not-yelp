@@ -14,10 +14,8 @@
       </div>
       <div class="collapse navbar-collapse" id="nav">
 				<ul class="nav navbar-nav">
-					<li><a href="#">Link <span class="sr-only">(current)</span></a></li>
-					<li><a href="/restaurants">Restaurants</a></li>
-					<li><a href="#">Reviews</a></li>
-					<li><a href="#">Orders</a></li>
+					<li><a href="#">Home</a></li>
+					<li><a href="/restaurants">View Restaurants</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<form class="navbar-form navbar-left" role="search">

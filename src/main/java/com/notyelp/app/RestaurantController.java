@@ -27,7 +27,7 @@ import javax.servlet.http.HttpSession;
 
 
 @Controller
-//@SessionAttributes("customer")
+@SessionAttributes("customer")
 public class RestaurantController {
 
     private static final Logger logger = LoggerFactory.getLogger(RestaurantController.class);

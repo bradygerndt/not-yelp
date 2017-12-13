@@ -47,7 +47,7 @@
                         </div>
                         <div class="form-group">
                             <label>Address</label>
-                            <form:input path="streetno" type="number" class="form-control" placeholder="Street Number"/>
+                            <form:input path="streetno" type="number" class="form-control"/>
                             <form:input path="streetname" class="form-control" placeholder="Street Name"/>
                             <form:input path="city" class="form-control" placeholder="City"/>
                             <form:input path="state" class="form-control" placeholder="State"/>

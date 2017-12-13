@@ -22,28 +22,32 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <ul class="list-group">
-                    <c:forEach items="${orderList}" var="order">
+                    <!--    Do c when here for no menu items-->
+                    <c:forEach items="${menu}" var="order">
                         <li class="list-group-item list-group-item-borderless">
                             <div class="container list-container">
                                 <div class="row">
+                                    <form:form method="POST" action="doOrder" modelAttribute="orderdetails">
                                     <div class="col-md-4">
-                                        <a href="./menu/${order.getRestId()}"><h4>${order.getRestId()}</h4></a>
-                                        <div>
-                                            <c:choose>
-                                                <c:when test="${order.getRestId() != Null}">
-                                                    <c:out value="${order.getFoodName()},${order.getFoodName()} " />
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <span>No Menu Items listed</span>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </div>
+                                        <h4><c:out value="${order.getFoodName()}"/></h4>
                                     </div>
+                                        <div class="col-md-4 col-md-offset-4">
+                                            <div class="row">
+                                                <p class="pull-right">$${order.getPrice()}</p>
+                                            </div>
+                                            <div class="row col-md-4 col-md-offset-10">
+                                               <form:input path="quantity" type="number" class="form-control" placeholder="0"/>
+                                            </div>
+                                        </div>
+                                    </form:form>
                                 </div>
                             </div>
                         </li>
                     </c:forEach>
                 </ul>
+                <div>
+                    <button class="btn btn-default pull-right" type="submit">Order Now!</button>
+                </div>
             </div>
         </div>
     </div>

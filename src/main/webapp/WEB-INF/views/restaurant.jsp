@@ -51,7 +51,7 @@
                     </div>
                     <div class="panel-body">
                         <p>Check out food from ${restaurant.getRname()}.</p>
-                        <button class="btn btn-default center-block">Order</button>
+                        <a href="/menu/${restaurant.getRestid()}"><button class="btn btn-default center-block">Order</button></a>
                     </div>
                 </div>
             </div>
