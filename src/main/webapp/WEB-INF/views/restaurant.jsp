@@ -18,10 +18,11 @@
 				<div class="panel-heading">
 					<h1 class="text-center">${restaurant.getRname()}</h1>
 				</div>
-				<div class="panel-body">$${restaurant.getPricerange()} &middot; ${restaurant.getDiningtype()} </div>
+				<div class="panel-body text-center">$${restaurant.getPricerange()} &middot; ${restaurant.getDiningtype()}
 				<p>${restaurant.getPhone()}</p>
 				<p>${restaurant.getEmail()}</p>
 				<p>${restaurant.getHours()}</p>
+				</div>
 				<c:choose>
 					<c:when test="${restaurant.getCity() != Null}">
 						<div>${restaurant.getStreetno()}
@@ -51,7 +52,7 @@
                     </div>
                     <div class="panel-body">
                         <p>Check out food from ${restaurant.getRname()}.</p>
-                        <a href="/menu/${restaurant.getRestid()}"><button class="btn btn-default center-block">Order</button></a>
+                        <a href="/menu/${restaurant.getRestid()}" class="button-link"><button class="btn btn-default center-block">Order</button></a>
                     </div>
                 </div>
             </div>
