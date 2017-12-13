@@ -18,11 +18,11 @@
 				<div class="panel-heading">
 					<h1 class="text-center">${restaurant.getRname()}</h1>
 				</div>
-				<div class="panel-body text-center">$${restaurant.getPricerange()} &middot; ${restaurant.getDiningtype()}
-				<p>${restaurant.getPhone()}</p>
-				<p>${restaurant.getEmail()}</p>
-				<p>${restaurant.getHours()}</p>
-				</div>
+				<div class="panel-body text-center">
+                    $${restaurant.getPricerange()} &middot; ${restaurant.getDiningtype()}
+				    <p>${restaurant.getPhone()}</p>
+				    <p>${restaurant.getEmail()}</p>
+				    <p>${restaurant.getHours()}</p>
 				<c:choose>
 					<c:when test="${restaurant.getCity() != Null}">
 						<div>${restaurant.getStreetno()}
@@ -33,10 +33,9 @@
 						<div>No address listed.</div>
 					</c:otherwise>
 				</c:choose>
-				<p>Delivery: </p>
-				<p>${restaurant.getDeliveryflag()}</p>
-				<p>Outdoor seating: </p>
-                <p>${restaurant.getOutdoorseating()}</p>
+				<p>Delivery: ${restaurant.getDeliveryflag()}</p>
+				<p>Outdoor seating: ${restaurant.getOutdoorseating()}</p>
+                </div>
 			</div>
 		</div>
             <div class="col-md-4">
