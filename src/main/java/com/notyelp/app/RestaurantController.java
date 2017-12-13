@@ -27,7 +27,7 @@ import javax.servlet.http.HttpSession;
 
 
 @Controller
-@SessionAttributes("customer")
+//@SessionAttributes("customer")
 public class RestaurantController {
 
     private static final Logger logger = LoggerFactory.getLogger(RestaurantController.class);
@@ -44,6 +44,8 @@ public class RestaurantController {
         RestaurantService restService = new RestaurantService();
         restList = restService.getRestList();
         model.addAttribute("restaurants", restList);
+
+        logger.info(session.getId());
 
         return "restaurants";
 
@@ -65,19 +67,19 @@ public class RestaurantController {
 
         return "restaurant";
     }
-//    @ExceptionHandler(Exception.class)
-//    public ModelAndView handleError(HttpServletRequest req, Exception ex) {
-//        logger.error("Request: " + req.getRequestURL() + " raised " + ex);
-//
-//        ModelAndView mav = new ModelAndView();
-//        //mav.addObject("exception", ex);
-//        //mav.addObject("url", req.getRequestURL());
-//        mav.addObject("notification", "Looks like you've been logged out.");
-//        mav.addObject("customer", new Customer());
-//
-//        mav.setViewName("/login");
-//        return mav;
-//    }
+    @ExceptionHandler(Exception.class)
+    public ModelAndView handleError(HttpServletRequest req, Exception ex) {
+        logger.error("Request: " + req.getRequestURL() + " raised " + ex);
+
+        ModelAndView mav = new ModelAndView();
+        //mav.addObject("exception", ex);
+        //mav.addObject("url", req.getRequestURL());
+        mav.addObject("notification", "Looks like you've been logged out.");
+        mav.addObject("customer", new Customer());
+
+        mav.setViewName("/login");
+        return mav;
+    }
 
 
 }
