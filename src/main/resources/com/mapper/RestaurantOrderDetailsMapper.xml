@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.RestaurantOrderDetails">
+    <resultMap id="OrderDetailsResult" type="RestaurantOrderDetails">
+        <id property="ono" column="ono"/>
+        <result property="foodname" column="foodname" />
+        <result property="restid" column="restid" />
+        <result property="qty" column="qty" />
+    </resultMap>
+<insert id="insertOrder" parameterType="RestaurantOrderDetails">
+    INSERT (ONO, FOODNAME, RESTID, QTY INTO RESTAURANT_ODETAILS) VALUES (Restaurant_order_ono.nextval, #{foodname}, #{restid}, #{qty})
+</insert>
+</mapper>

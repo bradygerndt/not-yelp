@@ -11,6 +11,10 @@ public class RestaurantOrder {
     private String OrderDeliveryFlag;
     private String OrderPickUpFlag;
 
+    public RestaurantOrder(){
+
+    }
+
 
     public RestaurantOrder(BigDecimal Ono, String CustEmail, String OrderDineInFlag, String OrderDeliveryFlag, String OrderPickUpFlag) {
         this.Ono = Ono;

@@ -9,6 +9,10 @@ public class Order {
 	private String FoodName;
 	private BigDecimal Price;
 
+	public Order() {
+
+	}
+
 	public Order(BigDecimal RestId, String FoodName, BigDecimal Price) {
 		this.RestId = RestId;
 		this.FoodName = FoodName;
@@ -41,9 +45,6 @@ public class Order {
 		this.Price = Price;
 	}
 
-	public Order() {
-		
-	}
 
 
 

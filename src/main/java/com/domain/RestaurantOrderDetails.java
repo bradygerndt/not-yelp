@@ -10,6 +10,10 @@ public class RestaurantOrderDetails {
     private BigDecimal RestId;
     private BigDecimal Qty;
 
+    public RestaurantOrderDetails() {
+
+    }
+
 
     public RestaurantOrderDetails(BigDecimal Ono, String FoodName, BigDecimal RestId, BigDecimal Qty) {
         this.Ono = Ono;
