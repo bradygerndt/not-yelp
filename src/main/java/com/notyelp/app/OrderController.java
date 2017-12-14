@@ -44,6 +44,7 @@ public class OrderController {
 
         //model.addAttribute("menu",orders);
         model.addAttribute("foodform", foodForm);
+        model.addAttribute("restid", id);
 
         return "menu";
     }
@@ -54,9 +55,17 @@ public class OrderController {
             logger.info("Submitted order");
             RestaurantOrderService restOservice = new RestaurantOrderService();
             RestaurantOrder restOrder = new RestaurantOrder();
-            logger.info(request.getParameter("pickup"));
-
-            if(request.getParameter("pickup").equals("on")){
+            String pickup;
+            String delivery;
+            try {
+                pickup = request.getParameter("pickup");
+                delivery = request.getParameter("deliver");
+            }
+            finally{
+                pickup = "off";
+                delivery = "off";
+            }
+            if(pickup.equals("on")){
                 restOrder.setOrderPickUpFlag("Y");
                 restOrder.setOrderDeliveryFlag("N");
             }
@@ -66,10 +75,20 @@ public class OrderController {
             }
 
             restOrder.setCustEmail(customer.getEmail());
+            logger.info(restOrder.getOrderPickUpFlag() + restOrder.getOrderDeliveryFlag());
 
             BigDecimal ono = restOservice.submitOrder(restOrder);
 
             logger.info("Ono is " + String.valueOf(ono));
+
+            for (Order f: foodform.getOrders()) {
+                String food = f.getFoodName();
+
+
+
+            }
+
+
 
 
         return "/";

@@ -4,17 +4,14 @@
     <resultMap id="OrderSubmit" type="RestOrder">
         <id property="Ono" column="Ono" />
         <result property="CustEmail" column="CustEmail" />
-        <result property="OrderDineFlag" column="OrderDineFlag" />
+        <result property="OrderDineInFlag" column="OrderDineInFlag" />
         <result property="OrderDeliveryFlag" column="OrderDeliveryFlag"/>
-        <result property="OrderPickUpFlag" column="OrderPickupFlag" />
+        <result property="OrderPickUpFlag" column="OrderPickUpFlag" />
     </resultMap>
-
     <insert id="submitOrder" parameterType="RestOrder">
-        INSERT INTO RESTAURANT_ORDER (Ono, CustEmail, OrderDeliveryFlag, OrderPickupFlag) VALUES (Restaurant_Order_Ono.nextval, #{CustEmail}, #{OrderDeliveryFlag}, #{OrderPickupFlag})
+        INSERT INTO RESTAURANT_ORDER (Ono, Orderdate, custEmail, OrderDeliveryFlag, OrderPickupFlag) VALUES (Restaurant_Order_Ono.nextval, SYSDATE, #{CustEmail}, #{OrderDeliveryFlag},"Y")
     </insert>
-    <select id="getLastId">
+    <select id="getLastId" resultType="hashmap">
         select Restaurant_Order_Ono.currval from dual;
     </select>
-
-
 </mapper>

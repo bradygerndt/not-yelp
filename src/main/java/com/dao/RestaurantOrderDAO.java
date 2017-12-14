@@ -23,16 +23,16 @@ public class RestaurantOrderDAO {
 
 
         try{
-            success = session.insert("com.mapper.RestaurantOrderMapper.submitOrder", restOrder);
+            session.insert("com.mapper.RestaurantOrderMapper.submitOrder", restOrder);
             session.commit();
 
-            id = session.selectOne("com.mapper.RestaurantOrderMapper.getLastId");
+            //id = session.selectOne("com.mapper.RestaurantOrderMapper.getLastId");
 
         }
         finally {
             session.close();
         }
 
-        return id;
+        return BigDecimal.valueOf(1);
     }
 }

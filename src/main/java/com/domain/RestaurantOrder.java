@@ -15,22 +15,12 @@ public class RestaurantOrder {
 
     }
 
-
-    public RestaurantOrder(BigDecimal Ono, String CustEmail, String OrderDineInFlag, String OrderDeliveryFlag, String OrderPickUpFlag) {
-        this.Ono = Ono;
-        this.CustEmail = CustEmail;
-        this.OrderDineInFlag = OrderDineInFlag;
-        this.OrderDeliveryFlag = OrderDeliveryFlag;
-        this.OrderPickUpFlag = OrderPickUpFlag;
-    }
-
-
     public BigDecimal getOno() {
         return Ono;
     }
 
     public void setOno(BigDecimal ono) {
-        this.Ono = ono;
+        Ono = ono;
     }
 
     public String getCustEmail() {
@@ -38,7 +28,7 @@ public class RestaurantOrder {
     }
 
     public void setCustEmail(String custEmail) {
-        this.CustEmail = custEmail;
+        CustEmail = custEmail;
     }
 
     public String getOrderDineInFlag() {
@@ -46,7 +36,7 @@ public class RestaurantOrder {
     }
 
     public void setOrderDineInFlag(String orderDineInFlag) {
-        this.OrderDineInFlag = orderDineInFlag;
+        OrderDineInFlag = orderDineInFlag;
     }
 
     public String getOrderDeliveryFlag() {
@@ -54,7 +44,7 @@ public class RestaurantOrder {
     }
 
     public void setOrderDeliveryFlag(String orderDeliveryFlag) {
-        this.OrderDeliveryFlag = orderDeliveryFlag;
+        OrderDeliveryFlag = orderDeliveryFlag;
     }
 
     public String getOrderPickUpFlag() {
@@ -62,6 +52,6 @@ public class RestaurantOrder {
     }
 
     public void setOrderPickUpFlag(String orderPickUpFlag) {
-        this.OrderPickUpFlag = orderPickUpFlag;
+        OrderPickUpFlag = orderPickUpFlag;
     }
 }
